@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Calculadora</string>
+    <string name="LIMPAR">LIMPAR</string>
+    <string name="APAGAR">DEL</string>
+    <string name="SAIR">SAIR</string>
+    <string name="M">M</string>
+    <string name="btraiz">\u221a</string>
+    <string name="btporcen">%</string>
+    <string name="btigual">=</string>
+    <string name="btum">1</string>
+    <string name="btdois">2</string>
+    <string name="bttres">3</string>
+    <string name="btquatro">4</string>
+    <string name="btcinco">5</string>
+    <string name="btseis">6</string>
+    <string name="btsete">7</string>
+    <string name="btoito">8</string>
+    <string name="btnove">9</string>
+    <string name="btsoma">+</string>
+    <string name="btsub">-</string>
+    <string name="btmult">*</string>
+    <string name="btzero">0</string>
+    <string name="btdiv">/</string>
+    <string name="btponto">.</string>
+    <string name="btraizcub">\u2083\u221a</string>
+    />
+</resources>
