@@ -1,17 +1,14 @@
 package com.example.tairone.calculadora;
 
 import android.app.AlertDialog;
-import android.util.*;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.*;
-import android.widget.*;
-import java.util.*;
-import java.nio.DoubleBuffer;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 import java.text.DecimalFormat;
-import java.text.FieldPosition;
 import java.text.NumberFormat;
-import java.text.ParsePosition;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -27,9 +24,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Double[] numero = new Double[10];
     Double resultado = 0.0;
     Double respar = 0.0;
-    Double M = 0.0;
+    Double M = null;
     int i =0;
-    NumberFormat format = new DecimalFormat(".##");
+    NumberFormat format = new DecimalFormat(".####"); //numero de casas decimais aceitas apos a virgula
 
     private Button btclear, btapaga, btsair, btmen, btraiz, btporcen, btraizcub, btigual,  btsoma, btsub, btmult, btdiv,btponto;
     private Button btzero, btum, btdois, bttres, btquatro, btcinco, btseis, btsete, btoito, btnove;
@@ -101,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            int selecionado = v.getId();
            String a = display.getText().toString();
            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-       // numero[0] = null;
 
         try {
             switch (selecionado) {
@@ -149,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             if (numero[0]==numero[0].intValue()){
                                 displaycalc.setText(String.valueOf(Integer.parseInt(a)));
                                 display.setText(" ");
+                                alert.setMessage(a);
                             }
                             if(numero[0]!=numero[0].intValue()){
                                 displaycalc.setText(format.format(numero[0]));
@@ -225,23 +222,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                       System.exit(0);
                       break;
                 case R.id.btmen:
-                    if(M==null) {
+                    //não esta retornando o valor de M
+                    if (M == null || M == 0.0) {
                           if(resultado != 0.0 || resultado != null) {
                              M = resultado;
                              displaym.setText("M");
+                              display.setText(" ");
                           }else if(resultado == 0.0 || resultado == null){
-                              M = Double.parseDouble(a.toString());
+                              M = Double.parseDouble(a);
                               displaym.setText("M");
-                              display.setText(null);
+                              display.setText(" ");
                           }
                     }else if(M!=null){
                           if(M == M.intValue()){
-                              display.setText(String.valueOf(M.intValue()));
-                               displaym.setText(null);
-                               M = null;
+                              display.setText(M.intValue());
+                              displaym.setText(" ");
+                              M = null;
                           }else if(M != M.intValue()){
                               display.setText(M.toString());
-                              displaym.setText(null);
+                              displaym.setText(" ");
                               M = null;
                           }
                     }
@@ -262,16 +261,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     resultado = Math.cbrt(numero[0]);
                     break;
                 case R.id.btigual:
-                 /*   if(display.getText().toString()== " " || display.getText().toString()== null){
-                             if(numero[0] == numero[0].intValue()){
-                                 displaycalc.setText(null);
-                                 display.setText(String.valueOf(numero[0].intValue()));
-                             }else{
-                                 displaycalc.setText(null);
-                                 display.setText(String.valueOf(numero[0]));
-                             }
-                    }else{ */
-                         numero[1] = Double.parseDouble(a);
+                    numero[1] = Double.parseDouble(a);
                           if(soma == true){
                                resultado = numero[0] + numero[1];
                                if(resultado == resultado.intValue()){
@@ -332,10 +322,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }catch (Exception e){
             for(i=0; i<10;i++){
+
                 display.setText("ERROR!!");
             }
             display.setText(" ");
 
-        };
+        }
     }
 }
