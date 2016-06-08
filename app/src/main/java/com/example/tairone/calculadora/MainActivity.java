@@ -146,14 +146,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     decimal = false;
                     if(numero[0] == null){
                         numero[0] = Double.parseDouble(a);
-                        alert.setMessage(String.valueOf(numero[0]));
-                        alert.show();
                             if (numero[0]==numero[0].intValue()){
                                 displaycalc.setText(String.valueOf(Integer.parseInt(a)));
                                 display.setText(" ");
                             }
                             if(numero[0]!=numero[0].intValue()){
-                                displaycalc.setText(a.toString());
+                                displaycalc.setText(format.format(numero[0]));
                                 display.setText(" ");
                             }
                     }
@@ -161,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         numero[1] = Double.parseDouble(a);
                         respar = numero[0] + numero[1];
                             if(respar==respar.intValue()){
-                                displaycalc.setText(format.format(respar.intValue()));
+                                displaycalc.setText(String.valueOf(respar.intValue()));
                                 display.setText(" ");
                             }
                             if(respar!=respar.intValue()){
